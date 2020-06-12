@@ -1,5 +1,23 @@
 package services
 
+type JiraFiledCompareOperation string
+
+const (
+	Equal         JiraFiledCompareOperation = "="
+	GraterOrEqual JiraFiledCompareOperation = ">="
+	LessOrEqual   JiraFiledCompareOperation = "<="
+	NotEqual      JiraFiledCompareOperation = "!="
+)
+
+type ComparableValue struct {
+	Value                string
+	CompareOperation JiraFiledCompareOperation
+}
+
+func (val *ComparableValue) JqlString() string {
+	return string(val.CompareOperation) + " " + val.Value
+}
+
 // SearchRequest Модель для запроса в Jira.
 type SearchRequest struct {
 
@@ -40,6 +58,9 @@ type SearchRequest struct {
 	AdditionFields []JiraField
 	// EpicName будет выполнять поиск по операции CONTAINS
 	EpicName string
+	// Дата обновления issue
+	// Указывается в формате yyy-mm-dd
+	UpdatedDate *ComparableValue
 }
 
 func (req SearchRequest) GetAdditionFields() []JiraField {
@@ -97,6 +118,10 @@ func (req SearchRequest) MakeJiraRequest() string {
 
 	if str := joinByCharacter(req.Priorities, ",", "\""); len(str) != 0 {
 		result = append(result, JiraFieldPriority.Str()+" in ("+str+")")
+	}
+
+	if req.UpdatedDate != nil {
+		result = append(result, JiraFieldUpdatedDate.Str() + " " + req.UpdatedDate.JqlString())
 	}
 
 	str := joinByCharacter(result, " and ", "")
