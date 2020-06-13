@@ -61,6 +61,10 @@ type SearchRequest struct {
 	// Дата обновления issue
 	// Указывается в формате yyy-mm-dd
 	UpdatedDate *ComparableValue
+
+	// Дата создания issue
+	// Указывается в формате yyy-mm-dd
+	CreatedDate *ComparableValue
 }
 
 func (req SearchRequest) GetAdditionFields() []JiraField {
@@ -122,6 +126,10 @@ func (req SearchRequest) MakeJiraRequest() string {
 
 	if req.UpdatedDate != nil {
 		result = append(result, JiraFieldUpdatedDate.Str() + " " + req.UpdatedDate.JqlString())
+	}
+
+	if req.CreatedDate != nil {
+		result = append(result, JiraFieldCreatedDate.Str() + " " + req.CreatedDate.JqlString())
 	}
 
 	str := joinByCharacter(result, " and ", "")
