@@ -46,7 +46,7 @@ const (
 	JiraFieldEpicNameField JiraField = "customfield_10005"
 
 	JiraFieldUpdatedDate JiraField = "updatedDate"
-	JiraFieldCreatedDate JiraField = "updatedDate"
+	JiraFieldCreatedDate JiraField = "createdDate"
 )
 
 var acceptedFields = []JiraField{
