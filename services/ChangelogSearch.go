@@ -15,7 +15,7 @@ type ChangelogSearch struct {
 
 func (val ChangelogSearch) QueryString() string {
 	result := string(val.Operation) + " "
-	values := joinByCharacter(val.Values, ",", `\"`)
+	values := joinByCharacter(val.Values, ",", `"`)
 
 	return val.FieldName.Str() + " " + result + "(" + values + ")"
 }
