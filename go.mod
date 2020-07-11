@@ -1,3 +1,3 @@
-module github.com/LastSprint/pkg_go_jira_service
+module github.com/LastSprint/JiraGoIssues
 
 go 1.14
