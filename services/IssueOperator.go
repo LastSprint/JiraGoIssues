@@ -1,6 +1,6 @@
 package services
 
-import models "github.com/LastSprint/pkg_go_jira_service/models"
+import models "github.com/LastSprint/JiraGoIssues/models"
 
 // Filter фильтрует тикеты по определенному предикату.
 func Filter(issues []models.IssueEntity, predicate func(models.IssueEntity) bool) []models.IssueEntity {

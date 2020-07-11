@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/LastSprint/pkg_go_jira_service/models"
+	"github.com/LastSprint/JiraGoIssues/models"
 )
 
 func TestCommentsModelParseSuccessfully(t *testing.T) {

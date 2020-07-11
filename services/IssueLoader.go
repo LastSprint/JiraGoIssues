@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	mj "github.com/LastSprint/pkg_go_jira_service/models"
+	mj "github.com/LastSprint/JiraGoIssues/models"
 )
 
 // JiraIssueService сервис для работы с задачами из Jira.

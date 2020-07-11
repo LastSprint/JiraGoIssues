@@ -1,8 +1,8 @@
 package Stubs
 
 import (
-	"github.com/LastSprint/pkg_go_jira_service/models"
-	"github.com/LastSprint/pkg_go_jira_service/services"
+	"github.com/LastSprint/JiraGoIssues/models"
+	"github.com/LastSprint/JiraGoIssues/services"
 )
 
 // JiraIssueServiceStubs заглушка для тестов
