@@ -47,6 +47,8 @@ const (
 
 	JiraFieldUpdatedDate JiraField = "updatedDate"
 	JiraFieldCreatedDate JiraField = "createdDate"
+
+	JiraFieldAll JiraField = "*all"
 )
 
 var acceptedFields = []JiraField{
