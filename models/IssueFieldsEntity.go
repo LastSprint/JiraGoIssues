@@ -26,6 +26,8 @@ type IssueFieldsEntity struct {
 
 	EpicLink string `json:"customfield_10008"`
 	EpicName string `json:"customfield_10005"`
+
+	IsGitCommitExist string `json:"customfield_11701"`
 }
 
 func (model IssueFieldsEntity) FormatedRemaining() string {

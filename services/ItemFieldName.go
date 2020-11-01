@@ -49,6 +49,7 @@ const (
 	JiraFieldCreatedDate JiraField = "createdDate"
 
 	JiraFieldAll JiraField = "*all"
+	JiraFieldGitCommitReferenced = "customfield_11701"
 )
 
 var acceptedFields = []JiraField{
