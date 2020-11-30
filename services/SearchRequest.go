@@ -10,7 +10,7 @@ const (
 )
 
 type ComparableValue struct {
-	Value                string
+	Value            string
 	CompareOperation JiraFiledCompareOperation
 }
 
@@ -48,8 +48,10 @@ type SearchRequest struct {
 	Priorities []string
 	// Assignee тот, на кого назначен Jira-итем.
 	Assignee string
-	// ProjectId id проекта в Jira.
+	// ProjectID id проекта в Jira.
 	ProjectID string
+	// ProjectsToExclude содержит ключи проектов в Jira которые НЕ нужно включать в выдачу. Если список пуст, то он не будет использован в запросе.
+	ProjectsToExclude []string
 	// EpicLink название эпика, к которому относятся запрошенные задачи.
 	EpicLink string
 	// Ordering опциональная сортировка.
@@ -102,6 +104,10 @@ func (req SearchRequest) MakeJiraRequest() string {
 		result = append(result, "\""+JiraFieldEpicName.Str()+"\""+" ~ "+"\""+req.EpicName+"\"")
 	}
 
+	if str := joinByCharacter(req.ProjectsToExclude, ",", "\""); len(str) != 0 {
+		result = append(result, JiraFieldProject.Str()+" not in ("+str+")")
+	}
+
 	if str := joinByCharacter(req.IncludedStatuses, ",", "\""); len(str) != 0 {
 		result = append(result, JiraFieldStatus.Str()+" in ("+str+")")
 	}
@@ -127,11 +133,11 @@ func (req SearchRequest) MakeJiraRequest() string {
 	}
 
 	if req.UpdatedDate != nil {
-		result = append(result, JiraFieldUpdatedDate.Str() + " " + req.UpdatedDate.JqlString())
+		result = append(result, JiraFieldUpdatedDate.Str()+" "+req.UpdatedDate.JqlString())
 	}
 
 	if req.CreatedDate != nil {
-		result = append(result, JiraFieldCreatedDate.Str() + " " + req.CreatedDate.JqlString())
+		result = append(result, JiraFieldCreatedDate.Str()+" "+req.CreatedDate.JqlString())
 	}
 
 	if len(req.ChangelogSearch) != 0 {
