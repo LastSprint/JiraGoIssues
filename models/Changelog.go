@@ -12,8 +12,9 @@ type IssueChangelogDate struct {
 }
 
 const (
-	WorkLog FieldType = "WorklogId"
-	Status  FieldType = "status"
+	WorkLog string = "WorklogId"
+	Status  string = "status"
+	TimeSpent string = "timespent"
 )
 
 type ChangeLogWrapper struct {
@@ -26,9 +27,9 @@ type HistoryEntity struct {
 }
 
 type HistoryItem struct {
-	FieldType FieldType `json:"field"`
-	From      string  `json:"from"`
-	To        string  `json:"to"`
+	FieldType string  `json:"field"`
+	From      string  `json:"fromString"`
+	To        string  `json:"toString"`
 }
 
 func (date *IssueChangelogDate) UnmarshalJSON(input []byte) error {
