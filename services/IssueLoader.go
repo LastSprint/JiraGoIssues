@@ -20,21 +20,18 @@ type JiraIssueService interface {
 
 // JiraIssueLoader загрузчик задач из Jira.
 type JiraIssueLoader struct {
-	url   string
-	login string
-	pass  string
+	authToken string
+	url  string
 }
 
 // NewJiraIssueLoader создает экземпляр загрузчка задач из Jira.
 // Parameters:
 //	- url: URL-адрес jira API.
-//	- login: Логин аккаунта для доступа к Jira.
-//	- pass: Пароль аккаунта.
-func NewJiraIssueLoader(url, login, pass string) *JiraIssueLoader {
+//	- authToken: BasicAuth токен
+func NewJiraIssueLoader(url, authToken string) *JiraIssueLoader {
 	return &JiraIssueLoader{
 		url:   url,
-		login: login,
-		pass:  pass,
+		authToken:  authToken,
 	}
 }
 
@@ -53,7 +50,10 @@ func (service *JiraIssueLoader) LoadIssues(request RequestConvertible) (mj.Issue
 		return result, err
 	}
 
-	req.SetBasicAuth(service.login, service.pass)
+	h := req.Header
+
+	h.Set("Authorization", "Basic " + service.authToken)
+	req.Header = h
 
 	qr := req.URL.Query()
 
