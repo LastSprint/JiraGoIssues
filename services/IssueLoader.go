@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 
 	mj "github.com/LastSprint/JiraGoIssues/models"
 )
@@ -69,7 +70,7 @@ func (service *JiraIssueLoader) LoadIssues(request RequestConvertible) (mj.Issue
 
 	qr.Set("jql", jql)
 	qr.Set("startAt", "0")
-	qr.Set("maxResults", "5000")
+	qr.Set("maxResults", strconv.Itoa(request.GetPageSize()))
 	qr.Set("fields", joinByCharacter(Str(fields), ",", ""))
 	qr.Set("expand", "changelog")
 
