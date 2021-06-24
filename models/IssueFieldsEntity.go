@@ -28,6 +28,8 @@ type IssueFieldsEntity struct {
 	EpicName string `json:"customfield_10005"`
 
 	IsGitCommitExist string `json:"customfield_11701"`
+
+	Labels []string `json:"labels"`
 }
 
 func (model IssueFieldsEntity) FormatedRemaining() string {
