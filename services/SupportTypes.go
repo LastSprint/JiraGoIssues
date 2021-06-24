@@ -9,6 +9,8 @@ type RequestConvertible interface {
 	MakeJiraRequest() string
 	// AdditionFields возвращает список полей, которые ожидается получить от запроса. Этот список дополняется к списку по-умолчанию.
 	GetAdditionFields() []JiraField
+	// GetPageSize возвращает кол-во issues которые будут запрошены у Jira. Ну или размер одной страницы
+	GetPageSize() int
 }
 
 // OrderingType тип сортировки результата из Jira
