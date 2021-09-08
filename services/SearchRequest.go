@@ -20,8 +20,8 @@ func (val *ComparableValue) JqlString() string {
 
 // SearchRequest Модель для запроса в Jira.
 type SearchRequest struct {
-
-	PageSize int
+	PageSize     int
+	StartAtIndex int
 
 	// UseOnlyAdditionalFields если установлено значение `true`,
 	// то в запросе будут использованы ТОЛЬКО поля, которые содержаться в этой модели реквеста
@@ -159,4 +159,8 @@ func (req SearchRequest) MakeJiraRequest() string {
 
 func (req SearchRequest) GetPageSize() int {
 	return req.PageSize
+}
+
+func (req SearchRequest) GetStartAtIndex() int {
+	return req.StartAtIndex
 }

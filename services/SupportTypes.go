@@ -11,6 +11,8 @@ type RequestConvertible interface {
 	GetAdditionFields() []JiraField
 	// GetPageSize возвращает кол-во issues которые будут запрошены у Jira. Ну или размер одной страницы
 	GetPageSize() int
+	// GetStartAtIndex возвращает индекс начиная с которого нужно возвращать задачи
+	GetStartAtIndex() int
 }
 
 // OrderingType тип сортировки результата из Jira

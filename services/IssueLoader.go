@@ -21,7 +21,7 @@ type JiraIssueService interface {
 // JiraIssueLoader загрузчик задач из Jira.
 type JiraIssueLoader struct {
 	authToken string
-	url  string
+	url       string
 }
 
 // NewJiraIssueLoader создает экземпляр загрузчка задач из Jira.
@@ -30,8 +30,8 @@ type JiraIssueLoader struct {
 //	- authToken: BasicAuth токен
 func NewJiraIssueLoader(url, authToken string) *JiraIssueLoader {
 	return &JiraIssueLoader{
-		url:   url,
-		authToken:  authToken,
+		url:       url,
+		authToken: authToken,
 	}
 }
 
@@ -52,7 +52,7 @@ func (service *JiraIssueLoader) LoadIssues(request RequestConvertible) (mj.Issue
 
 	h := req.Header
 
-	h.Set("Authorization", "Basic " + service.authToken)
+	h.Set("Authorization", "Basic "+service.authToken)
 	req.Header = h
 
 	qr := req.URL.Query()
@@ -69,7 +69,7 @@ func (service *JiraIssueLoader) LoadIssues(request RequestConvertible) (mj.Issue
 	}
 
 	qr.Set("jql", jql)
-	qr.Set("startAt", "0")
+	qr.Set("startAt", strconv.Itoa(request.GetStartAtIndex()))
 	qr.Set("maxResults", strconv.Itoa(request.GetPageSize()))
 	qr.Set("fields", joinByCharacter(Str(fields), ",", ""))
 	qr.Set("expand", "changelog")
