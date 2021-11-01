@@ -66,6 +66,8 @@ type SearchRequest struct {
 	// Указывается в формате yyy-mm-dd
 	UpdatedDate *ComparableValue
 
+	Labels []string
+
 	// Дата создания issue
 	// Указывается в формате yyy-mm-dd
 	CreatedDate *ComparableValue
@@ -128,6 +130,10 @@ func (req SearchRequest) MakeJiraRequest() string {
 
 	if str := joinByCharacter(req.ExcludedTypes, ",", "\""); len(str) != 0 {
 		result = append(result, JiraFieldIssueType.Str()+" not in ("+str+")")
+	}
+
+	if str := joinByCharacter(req.Labels, ",", "\""); len(str) != 0 {
+		result = append(result, JiraFiledLabels.Str()+" in ("+str+")")
 	}
 
 	if str := joinByCharacter(req.Priorities, ",", "\""); len(str) != 0 {

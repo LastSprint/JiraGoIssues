@@ -50,6 +50,8 @@ const (
 
 	JiraFieldAll JiraField = "*all"
 	JiraFieldGitCommitReferenced = "customfield_11701"
+
+	JiraFiledLabels JiraField = "labels"
 )
 
 var acceptedFields = []JiraField{
