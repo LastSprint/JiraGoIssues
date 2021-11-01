@@ -71,6 +71,7 @@ var acceptedFields = []JiraField{
 	JiraFieldPriority,
 	JiraFieldProject,
 	JiraFiledBoard,
+	JiraFiledLabels,
 }
 
 func (field JiraField) Str() string {
