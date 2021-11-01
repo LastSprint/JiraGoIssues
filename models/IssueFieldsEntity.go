@@ -13,6 +13,10 @@ type IssueFieldsEntity struct {
 	Priority  *IssuePriority  `json:"priority"`
 	Project   ProjectEntity   `json:"project"`
 
+	Board struct {
+		Value string `json:"value"`
+	} `json:"customfield_10703"`
+
 	Summary   string `json:"summary"`
 	Remaining int    `json:"timeestimate"`
 	Estimate  int    `json:"timeoriginalestimate"`
@@ -53,5 +57,3 @@ func formateTime(seconds int) string {
 	}
 	return fmt.Sprintf("%d мин.", minutes)
 }
-
-

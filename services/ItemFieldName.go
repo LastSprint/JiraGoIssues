@@ -48,10 +48,12 @@ const (
 	JiraFieldUpdatedDate JiraField = "updatedDate"
 	JiraFieldCreatedDate JiraField = "createdDate"
 
-	JiraFieldAll JiraField = "*all"
-	JiraFieldGitCommitReferenced = "customfield_11701"
+	JiraFieldAll                 JiraField = "*all"
+	JiraFieldGitCommitReferenced           = "customfield_11701"
 
 	JiraFiledLabels JiraField = "labels"
+
+	JiraFiledBoard JiraField = "customfield_10703"
 )
 
 var acceptedFields = []JiraField{
@@ -68,6 +70,7 @@ var acceptedFields = []JiraField{
 	JiraFieldTimeSpent,
 	JiraFieldPriority,
 	JiraFieldProject,
+	JiraFiledBoard,
 }
 
 func (field JiraField) Str() string {
